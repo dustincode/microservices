@@ -1,0 +1,22 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+
+zuul:
+  routes:
+    authentication-service:
+      url: ${AUTHENTICATION_SERVICE_URL:http://localhost:9000}
+      path: /auth/**
+    log-service:
+      url: ${LOG_SERVICE:http://localhost:9001}
+      path: /log/**
+
+application:
+  jwt:
+    base-64-secret: ${JWT_BASE_64_SECRET:eGNoanU4YWhkZnV5aWFzaGRpdWFzaGJkaXVhc2hkYml1YXNkaHVpYXNkYXNoZHVpYXNoZCB1aWFzaGR1aWFzdWRoYXN1aWRoYXVpcw==}
+    token-validity-in-seconds: ${JWT_VALIDITY_IN_SECONDS:900}

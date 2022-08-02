@@ -1,0 +1,26 @@
+server:
+  port: 9000
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/authentication_service?useUnicode=yes&characterEncoding=UTF-8&characterSetResults=UTF-8&useSSL=false}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    hikari:
+      maximum-pool-size: ${DB_MAX_POOL_SIZE:10}
+      pool-name: Hikari
+      auto-commit: false
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    show-sql: false
+    properties:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+
+application:
+  jwt:
+    base-64-secret: ${JWT_BASE_64_SECRET:eGNoanU4YWhkZnV5aWFzaGRpdWFzaGJkaXVhc2hkYml1YXNkaHVpYXNkYXNoZHVpYXNoZCB1aWFzaGR1aWFzdWRoYXN1aWRoYXVpcw==}
+    token-validity-in-seconds: ${JWT_VALIDITY_IN_SECONDS:900}
